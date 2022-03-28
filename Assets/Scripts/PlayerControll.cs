@@ -7,12 +7,10 @@ public class PlayerControll : MonoBehaviour
 {
     [Header("--------Options--------")]
     [SerializeField] float moveSpeed;
-    public float boostSpeed, slowSpeed, boostTime, speedRight, emotionTime, addScaleSpeed, addShapeSpeed;
-    public float headForwardRoatete, glassDestroy;
+    public float boostSpeed, slowSpeed, boostTime, addScale;
+    [SerializeField] SkinnedMeshRenderer sovok;
     [Header("--------Game--------")]
     [SerializeField] PathFollower path;
-    [SerializeField] float speed; 
-    [SerializeField] GameObject head;
 
     Vector2 firstPressPos;
     Vector2 secondPressPos;
@@ -26,8 +24,6 @@ public class PlayerControll : MonoBehaviour
     {
         if (Controll.Instance._state == "Game")
         {
-            head.transform.Rotate(Vector3.right * headForwardRoatete);
-
             if (Input.GetMouseButtonDown(0))
             {
                 firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
@@ -38,20 +34,30 @@ public class PlayerControll : MonoBehaviour
                 currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
                 currentSwipe.Normalize();
 
-                if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) // swip left
+                if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f) // swip up
                 {
-                    //head.GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
-                    transform.GetChild(0).transform.Translate(-Vector3.right * speedRight * Time.deltaTime);
+                    sovok.SetBlendShapeWeight(0, sovok.GetBlendShapeWeight(0) + (sovok.GetBlendShapeWeight(0) + addScale < 100 ? addScale : 100 - sovok.GetBlendShapeWeight(0)));
+                    MeshChange();
                 }
-                else if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) // swip right
+                if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f) // swip down
                 {
-                    //head.GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
-                    transform.GetChild(0).transform.Translate(Vector3.right * speedRight * Time.deltaTime);
-                }                    
+                    sovok.SetBlendShapeWeight(0, sovok.GetBlendShapeWeight(0) - (sovok.GetBlendShapeWeight(0) - addScale > 0 ? addScale : sovok.GetBlendShapeWeight(0)));
+                    MeshChange();
+                }
                 firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            }            
+            }           
         }
-    }  
+    }
+
+    void MeshChange()
+    {
+        Mesh bakeMesh = new Mesh();
+        sovok.BakeMesh(bakeMesh);
+        var collider = sovok.GetComponent<MeshCollider>();
+        collider.convex = true;
+        collider.sharedMesh = bakeMesh;
+        collider.convex = false;
+    }
 
     public void Boost()
     {
@@ -70,15 +76,11 @@ public class PlayerControll : MonoBehaviour
     public void Lose()
     {
         Controll.Instance.Set_state("Lose");
-        path.speed = 0;
-        headForwardRoatete = 0;
-        head = null;        
+        path.speed = 0;      
     }
     public void Win()
     {
         Controll.Instance.Set_state("Win");
         path.speed = 0;
-        headForwardRoatete = 0;
-        head = null;
     }
 }
