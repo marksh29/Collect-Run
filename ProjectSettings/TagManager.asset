@@ -4,12 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Boost
-  - Good
-  - Bad
+  - Wall
   - Enemy
-  - Glass
-  - WallExit
   layers:
   - Default
   - TransparentFX

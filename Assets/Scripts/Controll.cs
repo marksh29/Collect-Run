@@ -18,7 +18,7 @@ public class Controll : MonoBehaviour
     }
     void Start()
     {
-        PathPlacer.Instance.Off();
+        //PathPlacer.Instance.Off();
         Set_state("Menu");
     }
   
