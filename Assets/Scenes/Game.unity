@@ -874,7 +874,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 1
-  m_LookAt: {fileID: 2035758367}
+  m_LookAt: {fileID: 0}
   m_Follow: {fileID: 2035758367}
   m_Lens:
     FieldOfView: 40
@@ -898,8 +898,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269167176}
-  m_LocalRotation: {x: 0.17224371, y: -0.17544079, z: 0.031191649, w: 0.9688032}
-  m_LocalPosition: {x: 14.01, y: 20.4, z: -29.67}
+  m_LocalRotation: {x: 0.15008533, y: -0.19767344, z: 0.030641498, w: 0.96822554}
+  m_LocalPosition: {x: 16.05, y: 22, z: -34.469997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1920291834}
@@ -5951,7 +5951,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531580471}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.038000003, y: 2.533, z: -3.291}
+  m_LocalPosition: {x: -0.038000003, y: 2.38, z: -3.291}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children:
   - {fileID: 558822064}
@@ -7444,7 +7444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 13.8, y: 20.4, z: -27.8}
+  m_FollowOffset: {x: 15.839999, y: 22, z: -32.6}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -7814,6 +7814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 15
+  camSpeed: 0.5
   addScale: 1
   body: {fileID: 2035758365}
   girlAnim: {fileID: 583089047}
@@ -7826,6 +7827,7 @@ MonoBehaviour:
   path: {fileID: 2035758368}
   manList: []
   up: 1
+  camer: {fileID: 269167177}
 --- !u!54 &2035758365
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10502,8 +10504,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3773659483201371059}
-  m_LocalRotation: {x: 0.17224371, y: -0.17544079, z: 0.031191649, w: 0.9688032}
-  m_LocalPosition: {x: 14.01, y: 20.4, z: -29.67}
+  m_LocalRotation: {x: 0.15008533, y: -0.19767344, z: 0.030641498, w: 0.96822554}
+  m_LocalPosition: {x: 16.05, y: 22, z: -34.469997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

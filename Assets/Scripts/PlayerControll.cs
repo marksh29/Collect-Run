@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PathCreation.Examples;
-
+using Cinemachine;
 public class PlayerControll : MonoBehaviour
 {
     public static PlayerControll Instance;
 
     [Header("--------Options--------")]
-    [SerializeField] float moveSpeed;
+    [SerializeField] float moveSpeed, camSpeed;
     public float addScale;
 
     [Header("--------Game--------")]
@@ -26,8 +26,14 @@ public class PlayerControll : MonoBehaviour
 
     [SerializeField] bool up;
 
+    CinemachineTransposer cam;
+    [SerializeField] CinemachineVirtualCamera camer;
+    float nideCamPos;
+
     void Start()
     {
+        cam = camer.GetCinemachineComponent<CinemachineTransposer>();
+        nideCamPos = cam.m_FollowOffset.y;
         Instance = this;
         MeshChange();
         path.speed = moveSpeed;
@@ -36,7 +42,6 @@ public class PlayerControll : MonoBehaviour
     {
         if (Controll.Instance._state == "Game")
         {
-           // body.AddForce(Vector3.forward * moveSpeed * Time.fixedDeltaTime, ForceMode.Acceleration);
             body.velocity = new Vector3(0, 0, 1) * moveSpeed;
 
             if (Input.GetMouseButtonDown(0))
@@ -66,11 +71,14 @@ public class PlayerControll : MonoBehaviour
                     up = false;
                     sovok.SetBlendShapeWeight(0, sovok.GetBlendShapeWeight(0) - (sovok.GetBlendShapeWeight(0) - addScale > 0 ? addScale : sovok.GetBlendShapeWeight(0)));
                     MeshChange();
-
-                    //girl.localPosition = new Vector3(girl.localPosition.x, 2.7f + (sovok.GetBlendShapeWeight(0) * 0.2f), girl.localPosition.z);
                 }
                 firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             }
+
+            if (cam.m_FollowOffset.y < nideCamPos)
+                cam.m_FollowOffset += new Vector3(0, cam.m_FollowOffset.y + camSpeed <= nideCamPos ? camSpeed : nideCamPos - cam.m_FollowOffset.y, 0);
+            else if(cam.m_FollowOffset.y > nideCamPos)
+                cam.m_FollowOffset -= new Vector3(0, cam.m_FollowOffset.y - camSpeed >= 22 ? camSpeed : cam.m_FollowOffset.y - 22, 0);
             //if (Input.GetMouseButtonUp(0))
             //{
             //    girlAnim.SetTrigger("dance");
@@ -86,6 +94,7 @@ public class PlayerControll : MonoBehaviour
 
     void MeshChange()
     {
+        nideCamPos = 22 + (sovok.GetBlendShapeWeight(0) * 0.25f);
         for (int i = 0; i < wall.Length; i++)
         {
             wall[i].localScale = new Vector3(wall[i].localScale.x, 3 + (sovok.GetBlendShapeWeight(0) * 0.4f), wall[i].localScale.z);
