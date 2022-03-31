@@ -13,7 +13,7 @@ public class PlayerControll : MonoBehaviour
 
     [Header("--------Game--------")]
     [SerializeField] Rigidbody body;
-    [SerializeField] Animator girlAnim;
+    public Animator girlAnim;
     [SerializeField] Transform[] wall;
     [SerializeField] Transform girl;
     [SerializeField] SkinnedMeshRenderer sovok;
@@ -136,6 +136,11 @@ public class PlayerControll : MonoBehaviour
         if (coll.gameObject.tag == "Enemy")
         {
             Lose();
+        }
+        if (coll.gameObject.tag == "Dress")
+        {
+            girl.GetComponent<Girl>().SetDress(coll.gameObject.GetComponent<Dress>().DressId());
+            coll.gameObject.SetActive(false);
         }
     } 
     public void Lose()

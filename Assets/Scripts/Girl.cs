@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class Girl : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] GameObject[] girls;
+
     void Start()
     {
         
+    }
+    public void SetDress(int id)
+    {
+        PlayerControll.Instance.girlAnim = girls[id].GetComponent<Animator>();
+        for (int i = 0; i <  girls.Length; i++)
+        {
+            girls[i].SetActive(i == id ? true : false);
+        }
     }
 
     private void OnCollisionEnter(Collision coll)
@@ -22,6 +31,11 @@ public class Girl : MonoBehaviour
         if(coll.gameObject.tag == "Enemy")
         {
             PlayerControll.Instance.Lose();
+        }
+        if (coll.gameObject.tag == "Dress")
+        {
+            SetDress(coll.gameObject.GetComponent<Dress>().DressId());
+            coll.gameObject.SetActive(false);
         }
     }
 }
