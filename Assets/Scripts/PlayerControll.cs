@@ -79,16 +79,7 @@ public class PlayerControll : MonoBehaviour
                 cam.m_FollowOffset += new Vector3(0, cam.m_FollowOffset.y + camSpeed <= nideCamPos ? camSpeed : nideCamPos - cam.m_FollowOffset.y, 0);
             else if(cam.m_FollowOffset.y > nideCamPos)
                 cam.m_FollowOffset -= new Vector3(0, cam.m_FollowOffset.y - camSpeed >= 22 ? camSpeed : cam.m_FollowOffset.y - 22, 0);
-            //if (Input.GetMouseButtonUp(0))
-            //{
-            //    girlAnim.SetTrigger("dance");
-            //    if (!up)
-            //    {
-            //    }
-            //    else
-            //    {
-            //    }
-            //}
+           
         }
     }
 
@@ -143,8 +134,7 @@ public class PlayerControll : MonoBehaviour
     {
         if (coll.gameObject.tag == "Enemy")
         {
-            coll.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            Destroy(coll.gameObject, 2);
+            coll.gameObject.GetComponent<Box>().Drop(0);
         }
     }
     public void Lose()

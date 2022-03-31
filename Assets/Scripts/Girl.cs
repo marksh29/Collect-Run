@@ -5,6 +5,7 @@ using UnityEngine;
 public class Girl : MonoBehaviour
 {
     [SerializeField] GameObject[] girls;
+    [SerializeField] float rotate;
 
     void Start()
     {
@@ -17,7 +18,21 @@ public class Girl : MonoBehaviour
         {
             girls[i].SetActive(i == id ? true : false);
         }
+        StartCoroutine(Rotate());
     }
+    IEnumerator Rotate()
+    {
+        float startRotation = transform.eulerAngles.y;
+        float endRotation = startRotation + 360.0f;
+        float t = 0.0f;
+        while (t < rotate)
+        {
+            t += Time.deltaTime;
+            float yRotation = Mathf.Lerp(startRotation, endRotation, t / rotate) % 360.0f;
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
+            yield return null;
+        }
+    } 
 
     private void OnCollisionEnter(Collision coll)
     {
@@ -28,8 +43,7 @@ public class Girl : MonoBehaviour
         if (coll.gameObject.tag == "Enemy")
         {
             PlayerControll.Instance.Lose();
-            coll.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            Destroy(coll.gameObject, 2);
+            coll.gameObject.GetComponent<Box>().Drop(0);
         }
     }
     private void OnTriggerEnter(Collider coll)
