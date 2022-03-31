@@ -9177,7 +9177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 15
   camSpeed: 0.5
-  addScale: 1
+  addScale: 2
   body: {fileID: 2035758365}
   girlAnim: {fileID: 371375412}
   wall:
