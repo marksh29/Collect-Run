@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Animat
 {
-    dance, happy, hipHop, talk, idle2, idle, walk
+    dance, happy, hipHop, talk, idle2, idle, walk, stand
 }
 public class Man : MonoBehaviour
 {    

@@ -25,13 +25,15 @@ public class Girl : MonoBehaviour
         {
             PlayerControll.Instance.GirlDrop();
         }
-    }
-    private void OnTriggerEnter(Collider coll)
-    {
-        if(coll.gameObject.tag == "Enemy")
+        if (coll.gameObject.tag == "Enemy")
         {
             PlayerControll.Instance.Lose();
+            coll.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            Destroy(coll.gameObject, 2);
         }
+    }
+    private void OnTriggerEnter(Collider coll)
+    {       
         if (coll.gameObject.tag == "Dress")
         {
             SetDress(coll.gameObject.GetComponent<Dress>().DressId());

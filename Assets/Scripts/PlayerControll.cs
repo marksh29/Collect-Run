@@ -133,16 +133,20 @@ public class PlayerControll : MonoBehaviour
             }
             Controll.Instance.Set_state("Win");
         }      
-        if (coll.gameObject.tag == "Enemy")
-        {
-            Lose();
-        }
         if (coll.gameObject.tag == "Dress")
         {
             girl.GetComponent<Girl>().SetDress(coll.gameObject.GetComponent<Dress>().DressId());
             coll.gameObject.SetActive(false);
         }
-    } 
+    }
+    private void OnCollisionEnter(Collision coll)
+    {
+        if (coll.gameObject.tag == "Enemy")
+        {
+            coll.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            Destroy(coll.gameObject, 2);
+        }
+    }
     public void Lose()
     {
         moveSpeed = 0;

@@ -6,9 +6,11 @@ public class Dress : MonoBehaviour
 {
     [SerializeField] int id;
     [SerializeField] float speedRot;
+
     void Start()
     {
-        
+        GetComponent<MeshRenderer>().enabled = false;
+        transform.GetChild(id).gameObject.SetActive(true);
     }
     private void Update()
     {
