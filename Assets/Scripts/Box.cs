@@ -7,7 +7,7 @@ public class Box : MonoBehaviour
     public bool off;
     [SerializeField] Rigidbody body;
     [SerializeField] Box[] sosed;
-    [SerializeField] float force, sosedForce;
+    [SerializeField] float force;
     void Start()
     {
         
@@ -26,13 +26,13 @@ public class Box : MonoBehaviour
             Destroy(gameObject, 2);
             for (int i = 0; i < sosed.Length; i++)
             {
-                sosed[i].Drop(sosedForce);
+                sosed[i].Drop(force);
             }
             Impulse(forc == 0 ? force : forc);
         }       
     }
     void Impulse(float frc)
     {       
-        body.AddForce(Vector3.forward * frc, ForceMode.Impulse);
+        body.AddForce(new Vector3(Random.Range(-1f,1f), Random.Range(-1f, 1f), Random.Range(3f, 7f)) * frc, ForceMode.Impulse);
     }   
 }

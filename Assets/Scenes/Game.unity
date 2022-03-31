@@ -2906,8 +2906,7 @@ MonoBehaviour:
   body: {fileID: 737537641}
   sosed:
   - {fileID: 1568423610}
-  force: 50
-  sosedForce: 30
+  force: 5
 --- !u!1001 &737635377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3024,8 +3023,7 @@ MonoBehaviour:
   body: {fileID: 737635381}
   sosed:
   - {fileID: 1029344710}
-  force: 50
-  sosedForce: 30
+  force: 5
 --- !u!1 &747189316
 GameObject:
   m_ObjectHideFlags: 0
@@ -3711,8 +3709,7 @@ MonoBehaviour:
   sosed:
   - {fileID: 1568423610}
   - {fileID: 1029344710}
-  force: 50
-  sosedForce: 30
+  force: 5
 --- !u!1 &952027248
 GameObject:
   m_ObjectHideFlags: 0
@@ -4217,8 +4214,7 @@ MonoBehaviour:
   sosed:
   - {fileID: 947932865}
   - {fileID: 737635382}
-  force: 50
-  sosedForce: 30
+  force: 5
 --- !u!1 &1030824380
 GameObject:
   m_ObjectHideFlags: 0
@@ -8199,8 +8195,7 @@ MonoBehaviour:
   sosed:
   - {fileID: 737537642}
   - {fileID: 947932865}
-  force: 50
-  sosedForce: 30
+  force: 5
 --- !u!1001 &1569164288
 PrefabInstance:
   m_ObjectHideFlags: 0
