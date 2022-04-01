@@ -29,6 +29,7 @@ public class Man : MonoBehaviour
     public void SetAnimation(string name)
     {
         anim.SetTrigger(name);
+        //GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
     }
     private void OnTriggerEnter(Collider coll)
     {

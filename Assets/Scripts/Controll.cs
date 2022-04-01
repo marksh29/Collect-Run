@@ -12,6 +12,7 @@ public class Controll : MonoBehaviour
     public static Controll Instance;
     public string _state;
     [SerializeField] GameObject[] panels;
+    [SerializeField] GameObject faerwork;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -33,7 +34,7 @@ public class Controll : MonoBehaviour
         switch(_state)
         {          
             case ("Win"):
-
+                faerwork.SetActive(true);
                 break;
             case ("Lose"):
 

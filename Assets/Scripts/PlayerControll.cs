@@ -115,14 +115,14 @@ public class PlayerControll : MonoBehaviour
     {
         if (coll.gameObject.tag == "Finish")
         {
-            moveSpeed = 0;
             body.velocity = new Vector3(0, 0, 0);
+            Controll.Instance.Set_state("Win");               
             for (int  i = 0;  i < manList.Count;  i++)
             {
                 manList[i].GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
                 manList[i].GetComponent<Man>().SetAnimation("happy");
             }
-            Controll.Instance.Set_state("Win");
+            moveSpeed = 0;
         }      
         if (coll.gameObject.tag == "Dress")
         {
