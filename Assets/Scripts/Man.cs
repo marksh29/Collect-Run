@@ -54,6 +54,7 @@ public class Man : MonoBehaviour
     }
     public void Drop(float forc)
     {
+        GetComponent<BoxCollider>().enabled = false;
         drop = true;
         force = forc;
         body.AddForce(new Vector3(0, 0, -1) * forc, ForceMode.Impulse);        
