@@ -7,7 +7,7 @@ public class Box : MonoBehaviour
     public bool off;
     [SerializeField] Rigidbody body;
     [SerializeField] Box[] sosed;
-    [SerializeField] float force;
+    [SerializeField] float force, destroyTime;
     void Start()
     {
         
@@ -23,7 +23,6 @@ public class Box : MonoBehaviour
             off = true;
             gameObject.tag = "Untagged";
             body.isKinematic = false;
-            Destroy(gameObject, 2);
             for (int i = 0; i < sosed.Length; i++)
             {
                 sosed[i].Drop(force);
@@ -34,5 +33,18 @@ public class Box : MonoBehaviour
     void Impulse(float frc)
     {       
         body.AddForce(new Vector3(Random.Range(-1f,1f), Random.Range(-1f, 1f), Random.Range(3f, 7f)) * frc, ForceMode.Impulse);
-    }   
+    }
+    IEnumerator Scale()
+    {
+        float startRotation = transform.eulerAngles.y;
+        float endRotation = startRotation + 360.0f;
+        float t = 0.0f;
+        while (t < destroyTime)
+        {
+            t += Time.deltaTime;
+            float yRotation = Mathf.Lerp(startRotation, endRotation, t / destroyTime) % 360.0f;
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
+            yield return null;
+        }
+    }
 }
