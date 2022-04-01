@@ -2399,7 +2399,7 @@ MonoBehaviour:
   sosed:
   - {fileID: 1568423610}
   force: 5
-  destroyTime: 0
+  destroyTime: 100
 --- !u!1001 &737635377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2517,7 +2517,7 @@ MonoBehaviour:
   sosed:
   - {fileID: 1029344710}
   force: 5
-  destroyTime: 0
+  destroyTime: 100
 --- !u!1 &747189316
 GameObject:
   m_ObjectHideFlags: 0
@@ -3292,7 +3292,7 @@ MonoBehaviour:
   - {fileID: 1568423610}
   - {fileID: 1029344710}
   force: 5
-  destroyTime: 0
+  destroyTime: 100
 --- !u!1 &952027248
 GameObject:
   m_ObjectHideFlags: 0
@@ -3798,7 +3798,7 @@ MonoBehaviour:
   - {fileID: 947932865}
   - {fileID: 737635382}
   force: 5
-  destroyTime: 0
+  destroyTime: 100
 --- !u!1 &1030824380
 GameObject:
   m_ObjectHideFlags: 0
@@ -4317,7 +4317,7 @@ MonoBehaviour:
   startAnimation: 7
   anim: {fileID: 1066725959}
   mans: []
-  force: 0
+  force: 5
 --- !u!136 &1066725961
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7177,7 +7177,7 @@ MonoBehaviour:
   - {fileID: 737537642}
   - {fileID: 947932865}
   force: 5
-  destroyTime: 0
+  destroyTime: 100
 --- !u!1001 &1569164288
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7703,7 +7703,7 @@ MonoBehaviour:
   anim: {fileID: 1663783923}
   mans:
   - {fileID: 1066725960}
-  force: 0
+  force: 5
 --- !u!136 &1663783925
 CapsuleCollider:
   m_ObjectHideFlags: 0

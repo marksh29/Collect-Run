@@ -33,18 +33,20 @@ public class Box : MonoBehaviour
     void Impulse(float frc)
     {       
         body.AddForce(new Vector3(Random.Range(-1f,1f), Random.Range(-1f, 1f), Random.Range(3f, 7f)) * frc, ForceMode.Impulse);
+        StartCoroutine(ScaleUpAndDown());
     }
-    IEnumerator Scale()
+
+    IEnumerator ScaleUpAndDown()
     {
-        float startRotation = transform.eulerAngles.y;
-        float endRotation = startRotation + 360.0f;
-        float t = 0.0f;
-        while (t < destroyTime)
+        float elapsedTime = 0;
+        Vector3 initialScale = transform.localScale;
+        while (elapsedTime < destroyTime)
         {
-            t += Time.deltaTime;
-            float yRotation = Mathf.Lerp(startRotation, endRotation, t / destroyTime) % 360.0f;
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
-            yield return null;
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(0,0,0), (elapsedTime / destroyTime));
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
         }
+        transform.localScale = initialScale;
+        gameObject.SetActive(false);      
     }
 }
