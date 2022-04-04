@@ -5,6 +5,7 @@ using UnityEngine;
 public class Girl : MonoBehaviour
 {
     [SerializeField] GameObject[] girls;
+    GameObject curGirl;
     [SerializeField] float rotate;
 
     void Start()
@@ -16,20 +17,27 @@ public class Girl : MonoBehaviour
         PlayerControll.Instance.girlAnim = girls[id].GetComponent<Animator>();
         for (int i = 0; i <  girls.Length; i++)
         {
-            girls[i].SetActive(i == id ? true : false);
+            if(i == id)
+            {
+                girls[i].transform.rotation = Quaternion.Euler(0, 0, 0);
+                girls[i].SetActive(true);
+                curGirl = girls[i];
+            }
+            else
+                girls[i].SetActive(false);
         }
         StartCoroutine(Rotate());
     }
     IEnumerator Rotate()
     {
-        float startRotation = transform.eulerAngles.y;
+        float startRotation = curGirl.transform.eulerAngles.y;
         float endRotation = startRotation + 360.0f;
         float t = 0.0f;
         while (t < rotate)
         {
             t += Time.deltaTime;
             float yRotation = Mathf.Lerp(startRotation, endRotation, t / rotate) % 360.0f;
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
+            curGirl.transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
             yield return null;
         }
     } 

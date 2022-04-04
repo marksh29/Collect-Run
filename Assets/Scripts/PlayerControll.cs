@@ -100,7 +100,7 @@ public class PlayerControll : MonoBehaviour
 
     public void GirlDrop()
     {        
-        if (!up)
+        if (!up && Controll.Instance._state == "Game")
         {          
             girlAnim.SetTrigger("landing");
         }
@@ -140,13 +140,13 @@ public class PlayerControll : MonoBehaviour
     public void Lose()
     {
         moveSpeed = 0;
-        body.velocity = new Vector3(0, 0, 0);
-        girlAnim.SetTrigger("idle");
+        body.velocity = new Vector3(0, 0, 0);       
         for (int i = 0; i < manList.Count; i++)
         {
             manList[i].GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             manList[i].GetComponent<Man>().SetAnimation("idle2");
         }
         Controll.Instance.Set_state("Lose");
+        girlAnim.SetTrigger("idle");
     }
 }
