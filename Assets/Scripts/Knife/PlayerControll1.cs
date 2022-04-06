@@ -60,7 +60,6 @@ public class PlayerControll1 : MonoBehaviour
                 }
                 firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             }
-
             //if (cam.m_FollowOffset.y < nideCamPos)
             //    cam.m_FollowOffset += new Vector3(0, cam.m_FollowOffset.y + camSpeed <= nideCamPos ? camSpeed : nideCamPos - cam.m_FollowOffset.y, 0);
             //else if(cam.m_FollowOffset.y > nideCamPos)
@@ -82,6 +81,10 @@ public class PlayerControll1 : MonoBehaviour
         //collider.sharedMesh = bakeMesh;
         //collider.convex = false;
     }
+    public void AddMaxHeight()
+    {
+        maxKnifeHeight += addMaxKnifeHeight;
+    }
        
     private void OnTriggerEnter(Collider coll)
     {
@@ -90,8 +93,11 @@ public class PlayerControll1 : MonoBehaviour
             body.velocity = new Vector3(0, 0, 0);
             Controll.Instance.Set_state("Win");              
             moveSpeed = 0;
-        } 
-              
+        }
+        if (coll.gameObject.tag == "BoxKnife")
+        {
+            coll.gameObject.GetComponent<KnifeBox>().Slise();
+        }
     }
     private void OnCollisionEnter(Collision coll)
     {

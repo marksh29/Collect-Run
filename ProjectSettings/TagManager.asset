@@ -9,6 +9,7 @@ TagManager:
   - Dress
   - Off
   - BoxFinish
+  - BoxKnife
   layers:
   - Default
   - TransparentFX
