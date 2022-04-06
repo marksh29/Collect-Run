@@ -70,7 +70,7 @@ public class PlayerControll1 : MonoBehaviour
 
     void MeshChange()
     {
-        nideCamPos = 22 + (knife.GetBlendShapeWeight(0) * 0.1f);
+        //nideCamPos = 22 + (knife.GetBlendShapeWeight(0) * 0.1f);
         for (int i = 0; i < wall.Length; i++)
         {
             wall[i].localScale = new Vector3(wall[i].localScale.x, 3 + (knife.GetBlendShapeWeight(0) * 0.0512f), wall[i].localScale.z);

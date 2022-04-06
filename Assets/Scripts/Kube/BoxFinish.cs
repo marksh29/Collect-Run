@@ -30,6 +30,6 @@ public class BoxFinish : MonoBehaviour
         if (curBox >= nideBox)
             Controll.Instance.Set_state("Win");
         else
-            Controll.Instance.Set_state("Lose");
+            Controll.Instance.Set_state("Win");
     }
 }
