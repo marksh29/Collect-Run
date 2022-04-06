@@ -8,6 +8,7 @@ public class FlyBox : MonoBehaviour
     Rigidbody body;
     [SerializeField] float flySpeed, force, xx;
     bool move;
+    Vector3 movePos;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -17,7 +18,7 @@ public class FlyBox : MonoBehaviour
     {
         if(move)
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.position, flySpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, player.localScale.y, player.position.z), flySpeed * Time.deltaTime);
         }
     }
     public void Fly()

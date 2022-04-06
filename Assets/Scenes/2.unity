@@ -15509,7 +15509,7 @@ GameObject:
   - component: {fileID: 2035758364}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15530,12 +15530,12 @@ MonoBehaviour:
   addScale: 2
   moveSpeed: 15
   addMaxKnifeHeight: 10
-  maxKnifeHeight: 0
   camSpeed: 4
   body: {fileID: 2035758365}
   wall:
   - {fileID: 747189317}
   knife: {fileID: 250423667}
+  maxKnifeHeight: 0
   camer: {fileID: 269167177}
 --- !u!54 &2035758365
 Rigidbody:
