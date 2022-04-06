@@ -9,15 +9,13 @@ public class PlayerControll1 : MonoBehaviour
 
     [Header("--------Options--------")]
     [SerializeField] bool redIsLose;
-    [SerializeField] float moveSpeed, camSpeed;
     public float addScale;
+    [SerializeField] float moveSpeed, addMaxKnifeHeight,  maxKnifeHeight, camSpeed;
 
     [Header("--------Game--------")]
     [SerializeField] Rigidbody body;
-    public Animator girlAnim;
     [SerializeField] Transform[] wall;
     [SerializeField] SkinnedMeshRenderer knife;
-    [SerializeField] PathFollower path;
 
     Vector2 firstPressPos;
     Vector2 secondPressPos;
@@ -33,7 +31,6 @@ public class PlayerControll1 : MonoBehaviour
         nideCamPos = cam.m_FollowOffset.y;
         Instance = this;
         MeshChange();
-        path.speed = moveSpeed;
     }
     void FixedUpdate()
     {
@@ -44,7 +41,6 @@ public class PlayerControll1 : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-                girlAnim.SetTrigger("loock");
             }
             if (Input.GetMouseButton(0))
             {
@@ -54,7 +50,7 @@ public class PlayerControll1 : MonoBehaviour
 
                 if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f) // swip up
                 {
-                    knife.SetBlendShapeWeight(0, knife.GetBlendShapeWeight(0) + (knife.GetBlendShapeWeight(0) + addScale < 100 ? addScale : 100 - knife.GetBlendShapeWeight(0)));
+                    knife.SetBlendShapeWeight(0, knife.GetBlendShapeWeight(0) + (knife.GetBlendShapeWeight(0) + addScale < maxKnifeHeight ? addScale : maxKnifeHeight - knife.GetBlendShapeWeight(0)));
                     MeshChange();
                 }
                 if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f) // swip down
@@ -65,20 +61,19 @@ public class PlayerControll1 : MonoBehaviour
                 firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             }
 
-            if (cam.m_FollowOffset.y < nideCamPos)
-                cam.m_FollowOffset += new Vector3(0, cam.m_FollowOffset.y + camSpeed <= nideCamPos ? camSpeed : nideCamPos - cam.m_FollowOffset.y, 0);
-            else if(cam.m_FollowOffset.y > nideCamPos)
-                cam.m_FollowOffset -= new Vector3(0, cam.m_FollowOffset.y - camSpeed >= 22 ? camSpeed : cam.m_FollowOffset.y - 22, 0);
-           
+            //if (cam.m_FollowOffset.y < nideCamPos)
+            //    cam.m_FollowOffset += new Vector3(0, cam.m_FollowOffset.y + camSpeed <= nideCamPos ? camSpeed : nideCamPos - cam.m_FollowOffset.y, 0);
+            //else if(cam.m_FollowOffset.y > nideCamPos)
+            //    cam.m_FollowOffset -= new Vector3(0, cam.m_FollowOffset.y - camSpeed >= 22 ? camSpeed : cam.m_FollowOffset.y - 22, 0);           
         }
     }
 
     void MeshChange()
     {
-        nideCamPos = 22 + (knife.GetBlendShapeWeight(0) * 0.25f);
+        //nideCamPos = 22 + (knife.GetBlendShapeWeight(0) * 0.25f);
         for (int i = 0; i < wall.Length; i++)
         {
-            wall[i].localScale = new Vector3(wall[i].localScale.x, 3 + (knife.GetBlendShapeWeight(0) * 0.4f), wall[i].localScale.z);
+            wall[i].localScale = new Vector3(wall[i].localScale.x, 3 + (knife.GetBlendShapeWeight(0) * 0.0512f), wall[i].localScale.z);
         }        
         //Mesh bakeMesh = new Mesh();
         //sovok.BakeMesh(bakeMesh);
@@ -95,8 +90,8 @@ public class PlayerControll1 : MonoBehaviour
             body.velocity = new Vector3(0, 0, 0);
             Controll.Instance.Set_state("Win");              
             moveSpeed = 0;
-        }     
-      
+        } 
+              
     }
     private void OnCollisionEnter(Collision coll)
     {

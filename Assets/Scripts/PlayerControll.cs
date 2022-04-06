@@ -11,7 +11,7 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] bool redIsLose;
     [SerializeField] float moveSpeed, camSpeed;
     public float addScale;
-
+    public int nideBoxToWin;
     [Header("--------Game--------")]
     [SerializeField] Rigidbody body;
     public Animator girlAnim;
@@ -31,6 +31,11 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera camer;
     float nideCamPos;
 
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
     void Start()
     {
         cam = camer.GetCinemachineComponent<CinemachineTransposer>();
@@ -117,19 +122,21 @@ public class PlayerControll : MonoBehaviour
         if (coll.gameObject.tag == "Finish")
         {
             body.velocity = new Vector3(0, 0, 0);
-            Controll.Instance.Set_state("Win");               
+            //Controll.Instance.Set_state("Win");               
             for (int  i = 0;  i < manList.Count;  i++)
             {
                 manList[i].GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
                 manList[i].GetComponent<Man>().SetAnimation("happy");
             }
             moveSpeed = 0;
+            BoxFinish.Instance.End();
         }      
         if (coll.gameObject.tag == "Dress")
         {
             girl.GetComponent<Girl>().SetDress(coll.gameObject.GetComponent<Dress>().DressId());
             coll.gameObject.SetActive(false);
         }
+
     }
     private void OnCollisionEnter(Collision coll)
     {
