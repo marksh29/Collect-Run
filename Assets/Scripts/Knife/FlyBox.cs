@@ -6,7 +6,7 @@ public class FlyBox : MonoBehaviour
 {
     Transform player;
     Rigidbody body;
-    [SerializeField] float flySpeed, force, xx;
+    [SerializeField] float flySpeed, force, xx, yy, zz;
     bool move;
     Vector3 movePos;
     void Start()
@@ -24,7 +24,7 @@ public class FlyBox : MonoBehaviour
     public void Fly()
     {
         body.isKinematic = false;
-        body.AddForce(new Vector3(xx, 1f, 1.5f) * force, ForceMode.Impulse);
+        body.AddForce(new Vector3(xx, yy, zz) * force, ForceMode.Impulse);
         StartCoroutine(FlyOn());
     }
     IEnumerator FlyOn()

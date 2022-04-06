@@ -845,6 +845,8 @@ MonoBehaviour:
   flySpeed: 50
   force: 20
   xx: 0.5
+  yy: 1
+  zz: 1.5
 --- !u!65 &133665527
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2031,6 +2033,8 @@ MonoBehaviour:
   flySpeed: 50
   force: 20
   xx: 0.5
+  yy: 1
+  zz: 1.5
 --- !u!65 &259872891
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2659,6 +2663,8 @@ MonoBehaviour:
   flySpeed: 50
   force: 20
   xx: -0.5
+  yy: 1
+  zz: 1.5
 --- !u!65 &311721153
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3188,6 +3194,8 @@ MonoBehaviour:
   flySpeed: 50
   force: 20
   xx: -0.5
+  yy: 1
+  zz: 1.5
 --- !u!65 &375070393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6883,6 +6891,8 @@ MonoBehaviour:
   flySpeed: 50
   force: 20
   xx: -0.5
+  yy: 1
+  zz: 1.5
 --- !u!65 &990843116
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7200,6 +7210,8 @@ MonoBehaviour:
   flySpeed: 50
   force: 20
   xx: -0.5
+  yy: 1
+  zz: 1.5
 --- !u!65 &1007106351
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7329,6 +7341,8 @@ MonoBehaviour:
   flySpeed: 50
   force: 20
   xx: -0.5
+  yy: 1
+  zz: 1.5
 --- !u!65 &1028533409
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8015,6 +8029,8 @@ MonoBehaviour:
   flySpeed: 50
   force: 20
   xx: 0.5
+  yy: 1
+  zz: 1.5
 --- !u!65 &1163913250
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8536,6 +8552,8 @@ MonoBehaviour:
   flySpeed: 50
   force: 20
   xx: 0.5
+  yy: 1
+  zz: 1.5
 --- !u!65 &1264919464
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9180,6 +9198,8 @@ MonoBehaviour:
   flySpeed: 50
   force: 20
   xx: -0.5
+  yy: 1
+  zz: 1.5
 --- !u!65 &1366659652
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10137,6 +10157,8 @@ MonoBehaviour:
   flySpeed: 50
   force: 20
   xx: 0.5
+  yy: 1
+  zz: 1.5
 --- !u!65 &1468130716
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10465,6 +10487,8 @@ MonoBehaviour:
   flySpeed: 50
   force: 20
   xx: 0.5
+  yy: 1
+  zz: 1.5
 --- !u!65 &1498074574
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15535,7 +15559,7 @@ MonoBehaviour:
   wall:
   - {fileID: 747189317}
   knife: {fileID: 250423667}
-  maxKnifeHeight: 0
+  maxKnifeHeight: 50
   camer: {fileID: 269167177}
 --- !u!54 &2035758365
 Rigidbody:
@@ -18139,6 +18163,8 @@ MonoBehaviour:
   flySpeed: 50
   force: 20
   xx: 0.5
+  yy: 1
+  zz: 1.5
 --- !u!54 &3269844570493953932
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18777,6 +18803,8 @@ MonoBehaviour:
   flySpeed: 50
   force: 20
   xx: -0.5
+  yy: 1
+  zz: 1.5
 --- !u!54 &4665258775172023089
 Rigidbody:
   m_ObjectHideFlags: 0
