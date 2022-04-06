@@ -8,6 +8,7 @@ public class PlayerControll : MonoBehaviour
     public static PlayerControll Instance;
 
     [Header("--------Options--------")]
+    [SerializeField] bool redIsLose;
     [SerializeField] float moveSpeed, camSpeed;
     public float addScale;
 
@@ -134,6 +135,8 @@ public class PlayerControll : MonoBehaviour
     {
         if (coll.gameObject.tag == "Enemy")
         {
+            if (redIsLose)
+                Lose();
             coll.gameObject.GetComponent<Box>().Drop(0);
         }
     }
