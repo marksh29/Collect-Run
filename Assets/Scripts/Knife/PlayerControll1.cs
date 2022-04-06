@@ -84,6 +84,8 @@ public class PlayerControll1 : MonoBehaviour
     public void AddMaxHeight()
     {
         maxKnifeHeight += addMaxKnifeHeight;
+        if (maxKnifeHeight > 100)
+            maxKnifeHeight = 100;
     }
        
     private void OnTriggerEnter(Collider coll)
