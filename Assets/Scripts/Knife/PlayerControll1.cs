@@ -10,13 +10,13 @@ public class PlayerControll1 : MonoBehaviour
     [Header("--------Options--------")]
     [SerializeField] bool redIsLose;
     public float addScale;
-    [SerializeField] float moveSpeed, addMaxKnifeHeight,  maxKnifeHeight, camSpeed;
+    [SerializeField] float moveSpeed, addMaxKnifeHeight, camSpeed;
 
     [Header("--------Game--------")]
     [SerializeField] Rigidbody body;
     [SerializeField] Transform[] wall;
     [SerializeField] SkinnedMeshRenderer knife;
-
+    [SerializeField] float maxKnifeHeight;
     Vector2 firstPressPos;
     Vector2 secondPressPos;
     Vector2 currentSwipe;
