@@ -10,8 +10,7 @@ public class PlayerControll1 : MonoBehaviour
     [Header("--------Options--------")]
     [SerializeField] bool redIsLose;
     public float addScale;
-    [SerializeField] float moveSpeed, addMaxKnifeHeight, camSpeed;
-
+    [SerializeField] float moveSpeed, addMaxKnifeHeight, camSpeed, rotateTime;
     [Header("--------Game--------")]
     [SerializeField] Rigidbody body;
     [SerializeField] Transform[] wall;
@@ -23,7 +22,9 @@ public class PlayerControll1 : MonoBehaviour
 
     CinemachineTransposer cam;
     [SerializeField] CinemachineVirtualCamera camer;
-    float nideCamPos;
+   
+    float nideCamPos;       
+    bool attack;
 
     void Start()
     {
@@ -60,16 +61,16 @@ public class PlayerControll1 : MonoBehaviour
                 }
                 firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             }
-            //if (cam.m_FollowOffset.y < nideCamPos)
-            //    cam.m_FollowOffset += new Vector3(0, cam.m_FollowOffset.y + camSpeed <= nideCamPos ? camSpeed : nideCamPos - cam.m_FollowOffset.y, 0);
-            //else if(cam.m_FollowOffset.y > nideCamPos)
-            //    cam.m_FollowOffset -= new Vector3(0, cam.m_FollowOffset.y - camSpeed >= 22 ? camSpeed : cam.m_FollowOffset.y - 22, 0);           
+            if (cam.m_FollowOffset.y < nideCamPos)
+                cam.m_FollowOffset += new Vector3(0, cam.m_FollowOffset.y + camSpeed <= nideCamPos ? camSpeed : nideCamPos - cam.m_FollowOffset.y, 0);
+            else if (cam.m_FollowOffset.y > nideCamPos)
+                cam.m_FollowOffset -= new Vector3(0, cam.m_FollowOffset.y - camSpeed >= 22 ? camSpeed : cam.m_FollowOffset.y - 22, 0);
         }
     }
 
     void MeshChange()
     {
-        //nideCamPos = 22 + (knife.GetBlendShapeWeight(0) * 0.25f);
+        nideCamPos = 22 + (knife.GetBlendShapeWeight(0) * 0.1f);
         for (int i = 0; i < wall.Length; i++)
         {
             wall[i].localScale = new Vector3(wall[i].localScale.x, 3 + (knife.GetBlendShapeWeight(0) * 0.0512f), wall[i].localScale.z);
@@ -100,6 +101,12 @@ public class PlayerControll1 : MonoBehaviour
         {
             coll.gameObject.GetComponent<KnifeBox>().Slise();
         }
+        if (coll.gameObject.tag == "KnifeTrigger" && !attack)
+        {
+            coll.gameObject.SetActive(false);
+            attack = true;
+            StartCoroutine(Rotate(-40, rotateTime));
+        }
     }
     private void OnCollisionEnter(Collision coll)
     {
@@ -115,5 +122,48 @@ public class PlayerControll1 : MonoBehaviour
         moveSpeed = 0;
         body.velocity = new Vector3(0, 0, 0);    
         Controll.Instance.Set_state("Lose");
+    }
+
+    IEnumerator Rotate(float angle, float time)
+    {
+        float startRotation = knife.gameObject.transform.eulerAngles.x;
+        float endRotation = startRotation + angle;
+        float t = 0.0f;
+        while (t < time)
+        {
+            t += Time.deltaTime;
+            float xRotation = Mathf.Lerp(startRotation, endRotation, t / time) % 360.0f;
+            knife.gameObject.transform.eulerAngles = new Vector3(xRotation, transform.eulerAngles.y, transform.eulerAngles.z);
+            yield return null;
+        }
+        StartCoroutine(RotateAttack(80, rotateTime));
+    }
+    IEnumerator RotateAttack(float angle, float time)
+    {
+        float startRotation = knife.gameObject.transform.eulerAngles.x;
+        float endRotation = startRotation + angle;
+        float t = 0.0f;
+        while (t < time)
+        {
+            t += Time.deltaTime;
+            float xRotation = Mathf.Lerp(startRotation, endRotation, t / time) % 360.0f;
+            knife.gameObject.transform.eulerAngles = new Vector3(xRotation, transform.eulerAngles.y, transform.eulerAngles.z);
+            yield return null;
+        }
+        StartCoroutine(RotateBack(-40, rotateTime));
+    }
+    IEnumerator RotateBack(float angle, float time)
+    {
+        float startRotation = knife.gameObject.transform.eulerAngles.x;
+        float endRotation = startRotation + angle;
+        float t = 0.0f;
+        while (t < time)
+        {
+            t += Time.deltaTime;
+            float xRotation = Mathf.Lerp(startRotation, endRotation, t / time) % 360.0f;
+            knife.gameObject.transform.eulerAngles = new Vector3(xRotation, transform.eulerAngles.y, transform.eulerAngles.z);
+            yield return null;
+        }
+        attack = false;
     }
 }
